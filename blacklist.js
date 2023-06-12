@@ -1,3 +1,4 @@
-const blacklist = [];
 
-module.exports = {blacklist}
+const blackList = []
+
+module.exports = {blackList}

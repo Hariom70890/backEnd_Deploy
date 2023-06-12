@@ -2,21 +2,19 @@
 // authorization :- What permission do you have , what things you can access.
 
 const express = require("express");
-const { connection } = require("./db");
-const { userRouter } = require("./routes/user.routes");
-const { contentRouter } = require("./routes/content.routes");
-const { jwt } = require("jsonwebtoken");
-const { notesRouter } = require("./routes/notes.routes");
+const { connection } = require('./db');
+const { userRouter } = require("./Routes/users.routes");
+const { postRouter } = require("./Routes/posts.routes");
 require("dotenv").config();
-const cors = require("cors")
+// const cors = require("cors")
 const app = express();
-app.use(cors())
+// app.use(cors())
 app.use(express.json());
 
-app.use("/users", userRouter);
-// app.use("/content", contentRouter);
-app.use("/notes",notesRouter)
 
+app.use("/users",userRouter)
+
+app.use("/posts",postRouter)
 
 app.listen(process.env.port, async () => {
    try {
