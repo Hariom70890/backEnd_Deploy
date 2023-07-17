@@ -1,16 +1,18 @@
+
 const express = require("express");
-const { connection } = require("./db");
+const { connection } = require('./db');
 const { userRouter } = require("./Routes/users.routes");
 const { postRouter } = require("./Routes/posts.routes");
 require("dotenv").config();
-const cors = require("cors");
+const cors = require("cors")
 const app = express();
-app.use(cors());
+app.use(cors())
 app.use(express.json());
 
-app.use("/users", userRouter);
 
-app.use("/posts", postRouter);
+app.use("/users",userRouter)
+
+app.use("/posts",postRouter)
 
 // app.listen(process.env.port, async () => {
 //    try {
@@ -23,4 +25,4 @@ app.use("/posts", postRouter);
 //    }
 // });
 
-module.exports = { app };
+module.exports = {app}

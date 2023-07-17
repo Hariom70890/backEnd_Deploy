@@ -4,13 +4,13 @@ const { auth } = require("../middleware/auth.middleware");
 
 const postRouter = express.Router();
 postRouter.use(express.json());
-postRouter.post("/add", auth, async (req, res) => {
+postRouter.post("/add",auth, async (req, res) => {
    // console.log("body",req.body)
    try {
       // const {title,body,device,userID,user} = req.body
-      // console.log(user)
+// console.log(user)
       const post = new PostModel(req.body);
-      console.log("post", post);
+      console.log("post",post)
       await post.save();
       res.json({ msg: "New Post Has been Added" });
    } catch (error) {
@@ -18,17 +18,18 @@ postRouter.post("/add", auth, async (req, res) => {
    }
 });
 
-postRouter.get("/", auth, async (req, res) => {
+postRouter.get("/",auth, async (req, res) => {
    const device = req.query.device;
    // console.log(q);
    try {
-      const userID = req.body.userID;
+      const userID = req.body.userID 
       // const x = await PostModel.find({ device });
       // console.log(x);
-      if (device) {
-         const posts = await PostModel.find({ userID, device });
+      if(device){
+
+         const posts = await PostModel.find({ userID , device });
          res.json(posts);
-      } else {
+      }else{
          const posts = await PostModel.find({ userID });
          res.json(posts);
       }
@@ -37,7 +38,7 @@ postRouter.get("/", auth, async (req, res) => {
    }
 });
 
-postRouter.patch("/update/:postID", auth, async (req, res) => {
+postRouter.patch("/update/:postID",auth, async (req, res) => {
    // userID in the user docs == userID in the note docs
    const userIDinUserDoc = req.body.userID;
    const { postID } = req.params;
@@ -55,7 +56,7 @@ postRouter.patch("/update/:postID", auth, async (req, res) => {
    }
 });
 
-postRouter.delete("/delete", auth, async (req, res) => {
+postRouter.delete("/delete",auth, async (req, res) => {
    // userID in the user docs == userID in the note docs
    const userIDinUserDoc = req.body.userID;
    const { postID } = req.params;

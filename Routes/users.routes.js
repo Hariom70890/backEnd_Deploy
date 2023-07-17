@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { UserModel } = require("../Model/user.model");
 const jwt = require("jsonwebtoken");
-// const { blackList } = require("../blackList");
+const { blackList } = require("../blackList");
 const userRouter = express.Router();
 require("dotenv").config();
 
@@ -55,8 +55,8 @@ userRouter.post("/login", async (req, res) => {
                res.status(200).json({ msg: "Wrong Credentials", err: err });
             }
          });
-      } else {
-         res.send("No user Found from this email");
+      }else{
+         res.send("No user Found from this email")
       }
    } catch (error) {
       console.log("1323");
